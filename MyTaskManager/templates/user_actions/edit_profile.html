@@ -1,0 +1,56 @@
+{% extends 'manager/base.html' %}
+
+{% block content %}
+
+<div class="test-info-wrapper">
+    <h2 style="text-align: center">Инофрмация о данном пользователе:</h2>
+    <dt>
+        <dl>
+            Пользовательский id: {{ user.pk }}
+            <br>
+            Пользователь: {{ user.get_username }}
+            <br>
+            Аутентифиция: {{ user.is_authenticated }}
+            <br>
+            Фото: {{ user.user_avatar }}
+            <br>
+            {% if user.get_all_permissions %}
+            Права пользователя:
+            <br>
+            {{ user.get_all_permissions }}
+            {% else %}
+            <p> Права пользователя: None</p>
+            {% endif %}
+        </dl>
+    </dt>
+</div>
+
+<div class="profile-form-wrapper">
+    <div class="alo">
+        <h1>Edit post</h1>
+        <form action="" method="post" enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+            {% for row in form %}
+            {% if row is form.user_avatar and user.user_avatar %}
+            <p>
+                <a href="{{ MEDIA_URL }}{{ user.user_avatar}}">
+                <img class="img-thumbnail" style="object-fit: cover; margin-right: 5px; border-radius: 5px; box-shadow: 0 0 10px rgba(55, 192, 2, 0.5);"
+                <img style="object-fit: cover; margin-right: 5px; border-radius: 5px; box-shadow: 0 0 10px rgba(55, 192, 2, 0.5);"
+                     src="{{ MEDIA_URL }}{{ user.user_avatar}}" alt="user_logo" width="200" height="200"></a>
+                {{ row.label }}
+                {{ row }}
+            </p>
+            {% else %}
+            <p>
+                {{ row.label }}
+                {{ row }}
+            </p>
+            {% endif %}
+            {% endfor %}
+            <input type="submit" value="Update"/>
+        </form>
+    </div>
+</div>
+{% endblock content %}

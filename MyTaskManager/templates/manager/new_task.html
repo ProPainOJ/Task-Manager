@@ -1,0 +1,17 @@
+{% extends 'manager/base.html' %}
+
+{% block content %}
+
+<form method="post">
+    <h1>Тут форма</h1>
+    {% csrf_token %}
+
+    <div class="new-form-wrapper">
+        {{ errors }}
+        {{ form.as_p }}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>
+
+{% endblock %}

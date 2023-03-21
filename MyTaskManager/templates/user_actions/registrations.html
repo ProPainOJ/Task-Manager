@@ -1,0 +1,14 @@
+{% extends 'manager/base.html'%}
+
+{% block content%}
+<div class="register-wrapper">
+    <h1> Регистрация </h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        <hr>
+        {{ custom_error_message }}
+        {{ form }}
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{% endblock %}

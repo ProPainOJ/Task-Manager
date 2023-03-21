@@ -1,0 +1,29 @@
+{% extends 'manager/base.html' %}
+
+{% block content %}
+
+<div class="task_groups">
+    <div class="0">
+        <nav class="nav flex-column">
+            <a class="nav-link active" aria-current="page" href="{% url 'tasks_home' %}">Все задачи</a>
+            {% for group in user_tasks_groups %}
+            <a class="nav-link active" aria-current="page" href="{% url 'task_group' group.id %}">
+                {{ group.group_name }}
+            </a>
+            {% endfor %}
+            <a class="nav-link active" href="{% url 'new_group' %}">
+                <button type="button" class="btn btn-primary">Создать новую группу задач</button>
+            </a>
+        </nav>
+    </div>
+    <div class="1">
+        <a class="nav-link active" href="{% url 'new_task' %}">
+            <button type="button" class="btn btn-primary">Создать новую задачу</button>
+        </a>
+    </div>
+    {% block tasks_group %}
+    {% endblock %}
+</div>
+
+
+{% endblock content %}

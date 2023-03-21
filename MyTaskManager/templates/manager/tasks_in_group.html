@@ -1,0 +1,28 @@
+{% extends 'manager/tasks.html' %}
+
+{% block tasks_group %}
+
+{% for task in grouped_tasks %}
+
+
+{% endfor %}
+<div class="container text-center">
+    <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+        {% for task in grouped_tasks %}
+        <div class="col">
+            <div class="p-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{task.title_task}}</h5>
+                        <p class="card-text">{{task.task_descriptions}}</p>
+                        <a href="{% url 'task_ditail' task.id %}" class="btn btn-primary">Подробнее о задаче</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock tasks_group %}

@@ -1,0 +1,11 @@
+{% extends 'manager/tasks.html' %}
+
+{% block tasks_group %}
+<h3>Создание новой группы</h3>
+<form action="" method="post">
+    {% csrf_token %}
+    {{ group_name_error }}<br>
+    {{ form }}
+    <button type="submit" class="btn btn-primary">Создать</button>
+</form>
+{% endblock tasks_group %}

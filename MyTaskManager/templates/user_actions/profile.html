@@ -1,0 +1,45 @@
+{% extends 'manager/base.html' %}
+
+{% block content%}
+
+<div class="test-info-wrapper">
+    <h2 style="text-align: center">Инофрмация о данном пользователе:</h2>
+    <dt>
+        <dl>
+            Пользовательский id: {{ user.pk }}
+            <br>
+            Пользователь: {{ user.get_username }}
+            <br>
+            Аутентифиция: {{ user.is_authenticated }}
+            <br>
+            Фото: {{ user.user_avatar }}
+            <br>
+            {% if user.get_all_permissions %}
+            Права пользователя:
+            <br>
+            {{ user.get_all_permissions }}
+            {% else %}
+            <p> Права пользователя: None</p>
+            {% endif %}
+        </dl>
+    </dt>
+</div>
+
+<div class="profile-form-wrapper">
+    <div class="alo">
+
+        <h1>Личный кабинет</h1>
+        <dl>
+            <dt>
+             <div class='post-entry'>
+                 {% for obj in object_list %}
+                    <h1>{{ obj.username }}</h1>
+                 {% endfor %}
+              </div>
+            </dt>
+        </dl>
+        <a href="{% url 'edit_profile' user.pk %}">Изменить</a>
+
+    </div>
+</div>
+{% endblock %}

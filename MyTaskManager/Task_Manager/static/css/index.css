@@ -1,0 +1,63 @@
+/*     ALL      */
+
+*{
+    padding: 0%;
+    margin: 0%;
+}
+
+
+/*      login.html      */
+
+.log-form{
+    text-align: center;
+    background-color: red;
+}
+
+.position-relative{
+    margin-top: 10%;
+}
+
+.login-row{
+    margin-top: 5px;
+}
+
+
+/*      profile.html      */
+
+.test-info-wrapper {
+    text-align: center;
+}
+
+.profile-form-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-form-wrapper .alo {
+    width: auto;
+    height: auto;
+    padding: 15px;
+    text-align: center;
+
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    background-color:rgba(0, 153, 204, 0.4);
+}
+
+
+/*      tasks.html      */
+
+.task_groups {
+    border: 1px dashed black;
+}
+
+.tab-content {
+    background-color: blue;
+    color: White;
+}
+
+.nav flex-column nav-pills me-3 {
+    background-color: red;
+}
+
