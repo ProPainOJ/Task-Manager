@@ -1,4 +1,5 @@
 from Task_Manager.models import Task, TaskGroups, StagesOfExecuting
+from django.forms import modelformset_factory
 from django import forms
 
 
@@ -21,6 +22,11 @@ class CreateNewTaskGroupForm(forms.ModelForm):
 class CreateStagesOfExecuting(forms.ModelForm):
     class Meta(object):
         model = StagesOfExecuting
-        exclude = [
-            'task',
-        ]
+        fields = '__all__'
+
+
+TasksFormSet = modelformset_factory(StagesOfExecuting,
+                                    form=CreateStagesOfExecuting,
+                                    extra=0,
+                                    exclude=('task',),
+                                    can_delete=True)

@@ -5,7 +5,7 @@
 <div class="task_groups">
     <div class="0">
         <nav class="nav flex-column">
-            <a class="nav-link active" aria-current="page" href="{% url 'tasks_home' %}">Все задачи</a>
+            <a class="nav-link active" aria-current="page" href="{% url 'tasks_home' %}">Задачи без групп</a>
             {% for group in user_tasks_groups %}
             <a class="nav-link active" aria-current="page" href="{% url 'task_group' group.id %}">
                 {{ group.group_name }}

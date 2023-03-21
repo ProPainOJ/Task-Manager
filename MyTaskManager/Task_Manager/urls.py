@@ -9,7 +9,7 @@ urlpatterns = [
     path('users/', include('Users.urls')),
     path('tasks/', TaskHomeView.as_view(), name='tasks_home'),
     path('tasks/new_group/', CreateNewTaskGroup.as_view(), name='new_group'),
-    path('tasks/<int:group>/', TasksOfGroupView.as_view(), name='task_group'),
     path('tasks/new_task/', CreateNewTask.as_view(), name='new_task'),
-    path('tasks/task<int:pk>ditail/', TaskDitail.as_view(), name='task_ditail'),
+    path('tasks/<int:group>/', TasksOfGroupView.as_view(), name='task_group'),
+    path('tasks/<int:group>/task<int:pk>/', TaskDitail.as_view(), name='task_ditail'),
 ]

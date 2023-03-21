@@ -19,7 +19,7 @@ class Task(models.Model):
     create_data = models.DateTimeField('Дата создания', auto_now_add=True)
     task_data_goal = models.DateField('Дата выполнения', blank=False)
     priority = models.CharField('Приоритет задачи', choices=priorities, max_length=15, default='Неважные')
-    group = models.ForeignKey('TaskGroups', null=True, blank=True, verbose_name='Группа задачи',
+    group = models.ForeignKey('TaskGroups', null=True, blank=True, verbose_name='Группа задачи', default='No Groups',
                               on_delete=models.DO_NOTHING)
 
     class Meta:
@@ -32,20 +32,23 @@ class Task(models.Model):
 
 class TaskGroups(models.Model):
     creator_group = models.ForeignKey(USER, verbose_name='Создатель группы', on_delete=models.CASCADE)
-    group_name = models.CharField('Название группы', max_length=50, )
-    description_group = models.CharField('Описание группы', blank=True, max_length=150)
+    group_name = models.CharField('Название группы', blank=False, null=False, max_length=50)
+    description_group = models.CharField('Описание группы', blank=True, null=True, max_length=150)
 
     class Meta:
         verbose_name = 'Группа задач'
         verbose_name_plural = 'Группы задач'
 
     def __str__(self):
-        return f'{self.group_name}'
+        if USER.is_superuser:
+            return f'{self.group_name}, {self.creator_group}'
+        else:
+            return f'{self.group_name}'
 
 
 class StagesOfExecuting(models.Model):
     task = models.ForeignKey('Task', on_delete=models.CASCADE)
-    stage_name = models.CharField('Описание подзадачи', max_length=50)
+    stage_name = models.CharField('Описание подзадачи', blank=True, max_length=50)
     stage_name_status = models.BooleanField('Статус подзадачи', default=False)
 
     class Meta:

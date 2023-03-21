@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import mixins
 from django.views.generic import UpdateView
 
+from Task_Manager.models import TaskGroups
 from .forms import MyRegisterForm, UserEditForm
 from django.views import View
 import os
@@ -45,6 +46,11 @@ class RegistrationView(View):
             user = authenticate(request, email=email, password=password)
             if user is not None:
                 login(request, user)
+                TaskGroups.objects.create(creator_group=user,
+                                          group_name="No Groups",
+                                          description_group="Automatically generated standard group",
+                                          )
+
                 return redirect('base_user')
             else:
                 return render(request, template_name=self.template_name, context={

@@ -2,20 +2,85 @@
 
 {% block content %}
 
+<style>
+    .hidden{
+        display: none;
+    }
+</style>
+
 <div class="form-detail-wrapper">
+
     <form action="" method="post">
+        {{ formset.management_form }}
         {% csrf_token %}
-        {{ children_formset.management_form }}
-        {{ children_formset.non_form_errors }}
-        {{form.as_p}}
+        {{ form.as_p }}
+        <button id="add-new-subtask" type="button">Add new subtask</button>
+
+        {% if formset%}
+        <div class="task-children-wrapper">
+            <h3>Подзадачи {{ form.title_task.value }}</h3>
+            <hr>
+            {% for form in formset %}
+
+            <div class="existing-subtasks">
+                {{ form }}
+                <hr>
+            </div>
+            {% endfor %}
+
+
+        </div>
+        {% endif %}
+        <div id="empty-form" class="hidden">
+            {{ formset.empty_form }}
+            <hr>
+        </div>
+        <div id="new-sub-task"></div>
         <button type="submit">Update</button>
     </form>
 </div>
-<div class="children-wrapper">
-    {% for form in formset.forms %}
-    {{ form.as_p }}
-    {% endfor %}
-    <button type="button">Добавить новую подзадачу</button>
-</div>
+
+<script>
+
+    const addNewSubTask = document.getElementById('add-new-subtask')
+    const totalNewForms = document.getElementById('id_form-TOTAL_FORMS')
+    const currentSubTaskCount = document.getElementsByClassName('existing-subtasks')
+
+    addNewSubTask.addEventListener('click', add_new_subtask)
+
+    function add_new_subtask(args){
+        if (args){
+            args.preventDefault()
+        }
+        const countElement = currentSubTaskCount.length
+        console.log(countElement)
+        const newSubTask = document.getElementById('new-sub-task')
+
+        const emptyEl = document.getElementById('empty-form').cloneNode(true)
+        emptyEl.setAttribute('class', 'existing-subtasks')
+        emptyEl.setAttribute('id', `form-${countElement}`)
+
+        const re = new RegExp('__prefix__', 'g')
+        totalNewForms.setAttribute('value', countElement + 1)
+        emptyEl.innerHTML = emptyEl.innerHTML.replace(re, countElement)
+        newSubTask.append(emptyEl)
+
+    }
+
+
+
+
+
+
+
+
+
+
+</script>
 
 {% endblock %}
+
+
+
+
+

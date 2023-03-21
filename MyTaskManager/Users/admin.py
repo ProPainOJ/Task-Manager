@@ -6,7 +6,7 @@ from .models import MyUser
 @admin.register(MyUser)
 class UserAdmin(ModelAdmin):
     list_display = ('id', 'username', 'email',)
-    list_display_links = ('username',)
+    list_display_links = ('username', 'email',)
     list_filter = ('id', 'is_active', 'is_staff', 'is_superuser',)
     actions_on_bottom = True
     actions_on_top = False

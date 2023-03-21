@@ -12,10 +12,11 @@
         <div class="col">
             <div class="p-3">
                 <div class="card">
+                    <a class="del-task" href="#">X</a>
                     <div class="card-body">
                         <h5 class="card-title">{{task.title_task}}</h5>
                         <p class="card-text">{{task.task_descriptions}}</p>
-                        <a href="{% url 'task_ditail' task.id %}" class="btn btn-primary">Подробнее о задаче</a>
+                        <a href="{% url 'task_ditail' task.group.id task.id  %}" class="btn btn-primary">Подробнее о задаче</a>
                     </div>
                 </div>
             </div>

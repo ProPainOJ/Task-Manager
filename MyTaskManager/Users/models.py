@@ -20,13 +20,12 @@ def user_directory_path(instance, filename):
 class MyUser(AbstractUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
-
-    username = models.CharField(_('username'), max_length=150, blank=False, )
+    category = 'avatar'
+    username = models.CharField(_('username'), max_length=150, blank=True, null=True)
 
     email = models.EmailField(_('email address'), unique=True, blank=False,
                               error_messages={"unique": _("A user with that email already exists."), }, )
 
-    category = 'avatar'
     user_avatar = models.ImageField(verbose_name='Фотография пользователя.',
                                     help_text='Путь файла: MEDIA_ROOT/user_id/category/filename',
                                     upload_to=user_directory_path,
