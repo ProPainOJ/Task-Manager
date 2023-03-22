@@ -1,27 +1,105 @@
 {% extends 'manager/tasks.html' %}
 
+
 {% block tasks_group %}
 
-{% for task in grouped_tasks %}
-
-
-{% endfor %}
 <div class="container text-center">
-    <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+
+    <div class="row row-cols-1 row-cols-md-4 g-4">
         {% for task in grouped_tasks %}
         <div class="col">
-            <div class="p-3">
-                <div class="card">
-                    <a class="del-task" href="#">X</a>
-                    <div class="card-body">
-                        <h5 class="card-title">{{task.title_task}}</h5>
-                        <p class="card-text">{{task.task_descriptions}}</p>
-                        <a href="{% url 'task_ditail' task.group.id task.id  %}" class="btn btn-primary">Подробнее о задаче</a>
+
+            {% if task.priority == 'Неважные' %}
+            <div class="card text-bg-light mb-3" style="max-width: 18rem;">
+                <div class="card-header">
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a href="#deltask">
+                            <button type="button" class="btn-close" aria-label="Close"></button>
+                        </a>
                     </div>
+                    {{task.title_task}}
+                </div>
+                <div class="card-body ">
+                    {% if task.task_goal %}
+                    <h5 class="card-title">{{task.task_goal}}</h5>
+                    {% endif %}
+                    <p class="card-text">
+                        {{task.task_descriptions}}
+                        <a href="{% url 'task_ditail' task.group.id task.id  %}" class="card-link">Подробнее</a>
+                    </p>
                 </div>
             </div>
+
+            {% endif %}
+
+            {% if task.priority == 'Срочно-Неважные' %}
+            <div class="card text-bg-success mb-3" style="max-width: 18rem;">
+                <div class="card-header">
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a href="#deltask">
+                            <button type="button" class="btn-close" aria-label="Close"></button>
+                        </a>
+                    </div>
+                    {{task.title_task}}
+                </div>
+                <div class="card-body ">
+                    {% if task.task_goal %}
+                    <h5 class="card-title">{{task.task_goal}}</h5>
+                    {% endif %}
+                    <p class="card-text">{{task.task_descriptions}}
+                        <a href="{% url 'task_ditail' task.group.id task.id  %}" class="card-link">Подробнее</a>
+                    </p>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if task.priority == 'Важные' %}
+            <div class="card text-bg-warning mb-3" style="max-width: 18rem;">
+                <div class="card-header">
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a href="#deltask">
+                            <button type="button" class="btn-close" aria-label="Close"></button>
+                        </a>
+                    </div>
+                    {{task.title_task}}
+                </div>
+                <div class="card-body">
+                    {% if task.task_goal %}
+                    <h5 class="card-title">{{task.task_goal}}</h5>
+                    {% endif %}
+
+                    <p class="card-text">{{task.task_descriptions}}
+                        <a href="{% url 'task_ditail' task.group.id task.id  %}" class="card-link">Подробнее</a>
+                    </p>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if task.priority == 'Срочно-Важные' %}
+            <div class="card text-bg-danger mb-3" style="max-width: 18rem;">
+                <div class="card-header">
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a href="#deltask">
+                            <button type="button" class="btn-close" aria-label="Close"></button>
+                        </a>
+                    </div>
+                    {{task.title_task}}
+                </div>
+                <div class="card-body">
+                    {% if task.task_goal %}
+                    <h5 class="card-title">{{task.task_goal}}</h5>
+                    {% endif %}
+                    <p class="card-text">{{task.task_descriptions}}
+                        <a href="{% url 'task_ditail' task.group.id task.id  %}" class="card-link">Подробнее</a>
+                    </p>
+                </div>
+            </div>
+            {% endif %}
+
         </div>
+
         {% endfor %}
+
     </div>
 </div>
 

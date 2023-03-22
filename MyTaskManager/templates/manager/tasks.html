@@ -2,28 +2,32 @@
 
 {% block content %}
 
-<div class="task_groups">
-    <div class="0">
-        <nav class="nav flex-column">
-            <a class="nav-link active" aria-current="page" href="{% url 'tasks_home' %}">Задачи без групп</a>
+<div class="content-grouping">
+    <div class="task-group-menu">
+        <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+            <a class="nav-link active link-light" aria-current="page" href="{% url 'tasks_home' %}">
+                <button type="button" class="btn btn-outline-warning">Задачи без групп</button>
+            </a>
             {% for group in user_tasks_groups %}
-            <a class="nav-link active" aria-current="page" href="{% url 'task_group' group.id %}">
-                {{ group.group_name }}
+
+            {% if group.group_name == 'Standard group' %}
+            <a class="nav-link active link-light" aria-current="page" href="{% url 'task_group' group.id %}">
+                <button type="button" class="btn btn-outline-danger">{{ group.group_name }}</button>
             </a>
+
+            {% else %}
+            <a class="nav-link active link-light" aria-current="page" href="{% url 'task_group' group.id %}">
+                <button type="button" class="btn btn-outline-light">{{ group.group_name }}</button>
+            </a>
+
+            {% endif %}
+
             {% endfor %}
-            <a class="nav-link active" href="{% url 'new_group' %}">
-                <button type="button" class="btn btn-primary">Создать новую группу задач</button>
-            </a>
-        </nav>
-    </div>
-    <div class="1">
-        <a class="nav-link active" href="{% url 'new_task' %}">
-            <button type="button" class="btn btn-primary">Создать новую задачу</button>
-        </a>
+
+        </div>
     </div>
     {% block tasks_group %}
     {% endblock %}
 </div>
-
 
 {% endblock content %}

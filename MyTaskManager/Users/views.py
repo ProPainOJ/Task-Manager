@@ -47,7 +47,7 @@ class RegistrationView(View):
             if user is not None:
                 login(request, user)
                 TaskGroups.objects.create(creator_group=user,
-                                          group_name="No Groups",
+                                          group_name="Standard group",
                                           description_group="Automatically generated standard group",
                                           )
 

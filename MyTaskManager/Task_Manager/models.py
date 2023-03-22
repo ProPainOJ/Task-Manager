@@ -19,8 +19,12 @@ class Task(models.Model):
     create_data = models.DateTimeField('Дата создания', auto_now_add=True)
     task_data_goal = models.DateField('Дата выполнения', blank=False)
     priority = models.CharField('Приоритет задачи', choices=priorities, max_length=15, default='Неважные')
-    group = models.ForeignKey('TaskGroups', null=True, blank=True, verbose_name='Группа задачи', default='No Groups',
-                              on_delete=models.DO_NOTHING)
+    group = models.ForeignKey('TaskGroups',
+                              verbose_name='Группа задачи',
+                              null=True, blank=True,
+                              default='Standard group',
+                              on_delete=models.SET_NULL
+                              )
 
     class Meta:
         verbose_name = 'Задача'

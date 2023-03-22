@@ -6,6 +6,26 @@
 }
 
 
+/*      base.html      */
+
+.user-logo{
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.dropdown-menu{
+    background-color:rgba(0, 153, 204, 0.1);
+}
+
+.dropdown-item{
+    color: rgba(244, 247, 67);
+}
+
+.dropdown-item:hover{
+    color: white;
+    background-color:rgba(46, 170, 242, 0.6);
+}
+
 /*      login.html      */
 
 .log-form{
@@ -57,7 +77,55 @@
     color: White;
 }
 
-.nav flex-column nav-pills me-3 {
+.nav.flex-column.nav-pills.me-3 {
     background-color: red;
 }
 
+
+/*      tasks.html      */
+
+.modal-header{
+    background-color: rgba(240, 74, 85, 0.81)
+}
+
+
+.task-group-menu {
+    white-space: nowrap;
+}
+
+.btn-group-vertical{
+    margin-top: 20px;
+}
+
+.nav-link.active.link-light{
+    margin-top: 5%;
+    margin-left: 5%;
+}
+
+.card.text-bg-danger.mb-3{
+    border: 1px solid #4d4d4d;
+    box-shadow: 5px -5px 10px grey;
+}
+
+.card.text-bg-warning.mb-3{
+    border: 1px solid #4d4d4d;
+    box-shadow: 5px -5px 10px grey;
+}
+
+.card.text-bg-success.mb-3{
+    border: 1px solid #4d4d4d;
+    box-shadow: 5px -5px 10px grey;
+}
+
+.card.text-bg-light.mb-3{
+    border: 1px solid #4d4d4d;
+    box-shadow: 5px -5px 10px grey;
+}
+
+.card-body{
+    opacity:0.8;
+}
+
+.task-group-menu{
+    height: 85px;
+}

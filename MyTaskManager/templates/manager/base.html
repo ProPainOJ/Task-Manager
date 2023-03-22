@@ -13,12 +13,49 @@
 
 </head>
 
+<style>
+body{
+    {% if background %}
+    {% else %}
+        background-image: url({% static 'images/background/work-space.jpg' %});
+    {% endif %}
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</style>
+
 <body class="bg_color">
 <div class="header">
-    <nav style="background-color: grey" class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
 
-            <a class="navbar-brand" href="/"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNavDropdown"
                     aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,11 +66,9 @@
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="navbar-brand" href="/">
-                            <img style="border-radius: 8px;" src="{% static 'images/site_logo.png'%}"
+                            <img src="{% static 'images/site_logo.png'%}"
                                  alt="icon_logo"
-                                 width="50" height="50">
-                            <span class="text-logo">MᴛM</span>
-                        </a>
+                                 width="50" height="50">MᴛM</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{% url 'tasks_home' %}">Tasks</a>
@@ -46,11 +81,11 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                            aria-expanded="false">
-                            Dropdown link
+                            Новые элементы
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="{% url 'new_group' %}">Группы задач</a></li>
+                            <li><a class="dropdown-item" href="{% url 'new_task' %}">Новая задача</a></li>
                             <li><a class="dropdown-item" href="#">Something else here</a></li>
                         </ul>
                     </li>
@@ -60,44 +95,44 @@
 
                 {% if not user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link active" href="{% url 'login' %}">
-                        <button class="nav-link active" type="button">Login</button>
-                    </a>
+                    <div class="hstack gap-3">
+                        <a href="{%url 'login' %}">
+                            <button type="button" class="btn btn-outline-light">Login</button>
+                        </a>
+                    </div>
+                </li>
 
-                </li>
-                <li style="height: 30px; background-color: red; opacity: 0.8; border-radius: 4px;"
-                    class="nav-item">
-                    <a style="color: white; text-decoration: none;" href="{% url 'registration' %}">Registration</a>
-                </li>
                 {% else %}
-                <li style="height: 30px; background-color: Green; opacity: 0.8; border-radius: 4px;"
-                    class="nav-item">
-                    <a style="color: white; text-decoration: none;" href="{%url 'logout' %}">Logout</a>
-                </li>
-                <li style="color: white; margin: 4px;" class="nav-item">
-                    |
-                </li>
-                <li style="height: 30px; background-color: red; opacity: 0.8; border-radius: 4px;"
-                    class="nav-item">
-                    <a style="color: white; text-decoration: none;" href="{% url 'registration' %}">Registration</a>
-                </li>
-                {% endif %}
-
                 <li class="nav-item">
-                    {% if user.is_authenticated %}
-                    <a href="{% url 'profile' %}">
-                        <img style="object-fit: cover; margin-left: 5px; border-radius:15px;"
-                             src="{{ MEDIA_URL }}{{ user.user_avatar }}"
-                             width="35px" height="35px" alt="user_logo">
-                    </a>
-                    {% else %}
-                    <a href="{% url 'profile' %}">
-                        <img style="object-fit: cover; margin-left: 5px; border-radius:15px;"
-                             src="{% static 'images/default_avatar/default.png' %}"
-                             width="35px" height="35px" alt="user_logo">
-                    </a>
-                    {% endif %}
+                    <div class="hstack gap-3">
+                        <a href="{%url 'logout' %}">
+                            <button type="button" class="btn btn-outline-danger">Logout</button>
+                        </a>
+                    </div>
                 </li>
+
+                {% endif %}
+                <div class="vr" style="margin-left: 10px; margin-right: 10px;"></div>
+
+                {% if user.user_avatar %}
+                <li class="nav-item">
+                    <a href="{% url 'profile' %}">
+                        <img class="user-logo"
+                             width="35px" height="35px" alt="user_logo"
+                             src="{{ MEDIA_URL }}{{ user.user_avatar }}">
+                    </a>
+                </li>
+
+                {% else %}
+                <li class="nav-item">
+                    <a href="{% url 'profile' %}">
+                        <img class="user-logo"
+                             width="35px" height="35px" alt="user_logo"
+                             src="{% static 'images/default_avatar/default.png' %}">
+                    </a>
+                </li>
+
+                {% endif %}
             </ul>
         </div>
     </nav>
@@ -107,7 +142,7 @@
 {% block content%}
 {% endblock %}
 
-<div class="footer"></div>
+<div class="fixed-bottom"></div>
 
 </body>
 </html>
