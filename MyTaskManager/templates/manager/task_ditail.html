@@ -14,29 +14,24 @@
         {{ formset.management_form }}
         {% csrf_token %}
         {{ form.as_p }}
-        <button id="add-new-subtask" type="button">Add new subtask</button>
+        <button id="add-new-subtask" type="button" class="btn btn-info">Добавить новую подзадачу</button>
 
         {% if formset%}
-        <div class="task-children-wrapper">
-            <h3>Подзадачи {{ form.title_task.value }}</h3>
+        <div style="text-align: center;" class="task-children-wrapper">
+            <h3 style="color: green;">Подзадачи {{ form.title_task.value }}</h3>
             <hr>
             {% for form in formset %}
-
             <div class="existing-subtasks">
                 {{ form }}
-                <hr>
             </div>
             {% endfor %}
-
-
         </div>
         {% endif %}
         <div id="empty-form" class="hidden">
             {{ formset.empty_form }}
-            <hr>
         </div>
         <div id="new-sub-task"></div>
-        <button type="submit">Update</button>
+        <button style="margin-top: 15px;" type="submit" class="btn btn-success">Обновить</button>
     </form>
 </div>
 

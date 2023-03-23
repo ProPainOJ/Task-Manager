@@ -1,6 +1,10 @@
+from django.contrib.auth import get_user_model
+
 from Task_Manager.models import Task, TaskGroups, StagesOfExecuting
 from django.forms import modelformset_factory
 from django import forms
+
+USER = get_user_model()
 
 
 class CreateTaskForm(forms.ModelForm):

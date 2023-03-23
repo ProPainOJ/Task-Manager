@@ -26,29 +26,6 @@ body{
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </style>
 
 <body class="bg_color">
@@ -71,7 +48,7 @@ body{
                                  width="50" height="50">MᴛM</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'tasks_home' %}">Tasks</a>
+                        <a class="nav-link active" aria-current="page" href="{% url 'tasks_home' %}">Задачи</a>
                     </li>
                     {% if user.is_superuser%}
                     <li class="nav-item">
@@ -81,12 +58,11 @@ body{
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                            aria-expanded="false">
-                            Новые элементы
+                            Менеджер задач
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{% url 'new_group' %}">Группы задач</a></li>
+                            <li><a class="dropdown-item" href="{% url 'new_group' %}">Новая группа</a></li>
                             <li><a class="dropdown-item" href="{% url 'new_task' %}">Новая задача</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
                         </ul>
                     </li>
                 </ul>

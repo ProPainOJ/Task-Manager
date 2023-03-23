@@ -3,29 +3,54 @@
 
 {% block tasks_group %}
 
+
+{% for user_group in user_tasks_groups %}
+
+{% if user_group.id == group and user_group.group_name != 'Standard group' %}
+<div class="d-grid gap-2 col-6 mx-auto">
+    <div style="background-color: rgba(242, 242, 242, 0.55); border-radius: 15px; ">
+        <h5 style="color: white; text-align: center;"> {{ user_group.description_group }}</h5>
+    </div>
+    <a style="text-align: center; margin-bottom: 5%;" href="{% url 'delete_group' group %}">
+        <button type="button" class="btn btn-danger">Удалить группу</button>
+    </a>
+</div>
+{% endif %}
+
+{% endfor %}
+
 <div class="container text-center">
+    {% if grouped_tasks %}
 
     <div class="row row-cols-1 row-cols-md-4 g-4">
         {% for task in grouped_tasks %}
+
         <div class="col">
 
             {% if task.priority == 'Неважные' %}
-            <div class="card text-bg-light mb-3" style="max-width: 18rem;">
+            <div class="card text-bg-secondary mb-3" style="max-width: 18rem;">
                 <div class="card-header">
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <a href="#deltask">
-                            <button type="button" class="btn-close" aria-label="Close"></button>
+                        <a href="{% url 'delete_task' task.group.id task.id %}">
+                            <button type="button" class="btn-close btn-close-dark" aria-label="Close"></button>
                         </a>
                     </div>
-                    {{task.title_task}}
+                    <div class="grid text-center" style="--bs-columns: 18; --bs-gap: .5rem;">
+                        <div style="grid-column: span 14;">{{task.task_data_goal}}</div>
+                        <div class="g-col-4">{{task.title_task}}</div>
+                    </div>
                 </div>
                 <div class="card-body ">
                     {% if task.task_goal %}
                     <h5 class="card-title">{{task.task_goal}}</h5>
                     {% endif %}
                     <p class="card-text">
+                        {% if task.task_descriptions %}
                         {{task.task_descriptions}}
-                        <a href="{% url 'task_ditail' task.group.id task.id  %}" class="card-link">Подробнее</a>
+                        {% else %}
+                        У задачи нет описания
+                        {% endif %}
+                        <a href="{% url 'task_ditail' task.group.id task.id  %}" class="card-link link-light">Подробнее</a>
                     </p>
                 </div>
             </div>
@@ -36,18 +61,26 @@
             <div class="card text-bg-success mb-3" style="max-width: 18rem;">
                 <div class="card-header">
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <a href="#deltask">
-                            <button type="button" class="btn-close" aria-label="Close"></button>
+                        <a href="{% url 'delete_task' task.group.id task.id %}">
+                            <button type="button" class="btn-close btn-close-dark" aria-label="Close"></button>
                         </a>
                     </div>
-                    {{task.title_task}}
+                    <div class="grid text-center" style="--bs-columns: 18; --bs-gap: .5rem;">
+                        <div style="grid-column: span 14;">{{task.task_data_goal}}</div>
+                        <div class="g-col-4">{{task.title_task}}</div>
+                    </div>
                 </div>
                 <div class="card-body ">
                     {% if task.task_goal %}
                     <h5 class="card-title">{{task.task_goal}}</h5>
                     {% endif %}
-                    <p class="card-text">{{task.task_descriptions}}
-                        <a href="{% url 'task_ditail' task.group.id task.id  %}" class="card-link">Подробнее</a>
+                    <p class="card-text">
+                        {% if task.task_descriptions %}
+                        {{task.task_descriptions}}
+                        {% else %}
+                        У задачи нет описания
+                        {% endif %}
+                        <a href="{% url 'task_ditail' task.group.id task.id  %}" class="card-link link-light">Подробнее</a>
                     </p>
                 </div>
             </div>
@@ -57,19 +90,27 @@
             <div class="card text-bg-warning mb-3" style="max-width: 18rem;">
                 <div class="card-header">
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <a href="#deltask">
-                            <button type="button" class="btn-close" aria-label="Close"></button>
+                        <a href="{% url 'delete_task' task.group.id task.id %}">
+                            <button type="button" class="btn-close btn-close-dark" aria-label="Close"></button>
                         </a>
                     </div>
-                    {{task.title_task}}
+                    <div class="grid text-center" style="--bs-columns: 18; --bs-gap: .5rem;">
+                        <div style="grid-column: span 14;">{{task.task_data_goal}}</div>
+                        <div class="g-col-4">{{task.title_task}}</div>
+                    </div>
                 </div>
                 <div class="card-body">
                     {% if task.task_goal %}
                     <h5 class="card-title">{{task.task_goal}}</h5>
                     {% endif %}
 
-                    <p class="card-text">{{task.task_descriptions}}
-                        <a href="{% url 'task_ditail' task.group.id task.id  %}" class="card-link">Подробнее</a>
+                    <p class="card-text">
+                        {% if task.task_descriptions %}
+                        {{task.task_descriptions}}
+                        {% else %}
+                        У задачи нет описания
+                        {% endif %}
+                        <a href="{% url 'task_ditail' task.group.id task.id  %}" class="card-link link-light">Подробнее</a>
                     </p>
                 </div>
             </div>
@@ -79,18 +120,26 @@
             <div class="card text-bg-danger mb-3" style="max-width: 18rem;">
                 <div class="card-header">
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <a href="#deltask">
-                            <button type="button" class="btn-close" aria-label="Close"></button>
+                        <a href="{% url 'delete_task' task.group.id task.id %}">
+                            <button type="button" class="btn-close btn-close-dark" aria-label="Close"></button>
                         </a>
                     </div>
-                    {{task.title_task}}
+                    <div class="grid text-center" style="--bs-columns: 18; --bs-gap: .5rem;">
+                        <div style="grid-column: span 14;">{{task.task_data_goal}}</div>
+                        <div class="g-col-4">{{task.title_task}}</div>
+                    </div>
                 </div>
                 <div class="card-body">
                     {% if task.task_goal %}
                     <h5 class="card-title">{{task.task_goal}}</h5>
                     {% endif %}
-                    <p class="card-text">{{task.task_descriptions}}
-                        <a href="{% url 'task_ditail' task.group.id task.id  %}" class="card-link">Подробнее</a>
+                    <p class="card-text">
+                        {% if task.task_descriptions %}
+                        {{task.task_descriptions}}
+                        {% else %}
+                        У задачи нет описания
+                        {% endif %}
+                        <a href="{% url 'task_ditail' task.group.id task.id  %}" class="card-link link-light">Подробнее</a>
                     </p>
                 </div>
             </div>
@@ -102,6 +151,14 @@
 
     </div>
 </div>
+{% else %}
+
+<h2>В данной группе пока ничего нет, так начните создавать новые задачи :)</h2>
+<a href="{% url 'new_task' %}">
+    <button type="button" class="btn btn-light">Создать</button>
+</a>
+
+{% endif %}
 
 
 {% endblock tasks_group %}

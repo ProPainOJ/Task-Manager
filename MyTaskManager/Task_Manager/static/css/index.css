@@ -59,7 +59,6 @@
     height: auto;
     padding: 15px;
     text-align: center;
-
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.3);
     background-color:rgba(0, 153, 204, 0.4);
@@ -81,9 +80,6 @@
     background-color: red;
 }
 
-
-/*      tasks.html      */
-
 .modal-header{
     background-color: rgba(240, 74, 85, 0.81)
 }
@@ -103,29 +99,73 @@
 }
 
 .card.text-bg-danger.mb-3{
-    border: 1px solid #4d4d4d;
-    box-shadow: 5px -5px 10px grey;
+    border: 1px solid rgba(207, 207, 207, 0.94);
+    box-shadow: 5px -4px 10px grey;
 }
 
 .card.text-bg-warning.mb-3{
-    border: 1px solid #4d4d4d;
-    box-shadow: 5px -5px 10px grey;
+    border: 1px solid rgba(207, 207, 207, 0.94);
+    box-shadow: 5px -4px 10px grey;
 }
 
 .card.text-bg-success.mb-3{
-    border: 1px solid #4d4d4d;
-    box-shadow: 5px -5px 10px grey;
+    border: 1px solid rgba(207, 207, 207, 0.94);
+    box-shadow: 5px -4px 10px grey;
 }
 
-.card.text-bg-light.mb-3{
-    border: 1px solid #4d4d4d;
-    box-shadow: 5px -5px 10px grey;
+.card.text-bg-secondary.mb-3{
+    border: 1px solid rgba(207, 207, 207, 0.94);
+    box-shadow: 5px -4px 10px grey;
 }
 
 .card-body{
-    opacity:0.8;
+    color: black;
+    opacity: 0.9;
 }
 
 .task-group-menu{
-    height: 85px;
+    height: 150px;
+}
+
+
+/*      tasks.html      */
+
+
+.form-wrapper{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin: -250px 0 0 -250px;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    background-color:rgba(0, 153, 204, 0.4);
+}
+
+.form-wrapper{
+    width: 30%
+}
+
+
+/*      new_group.html      */
+
+.new-group-wrapper {
+    position: fixed; top: 50%; left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    background-color:rgba(0, 153, 204, 0.4);
+}
+
+/*      detail_task.html      */
+
+.existing-subtasks{
+    margin-top: 5px;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    background-color:rgba(179, 179, 179, 0.59);
 }

@@ -2,16 +2,24 @@
 
 {% block content %}
 
-<form method="post">
-    <h1>Тут форма</h1>
-    {% csrf_token %}
+<div class="groups-wrapper">
+    <div class="new-group-wrapper">
+        <form method="post">
+            <h1>Новой задача</h1>
+            {% csrf_token %}
 
-    <div class="new-form-wrapper">
-        {{ errors }}
-        {{ form.as_p }}
+            <div class="new-form-wrapper">
+                {{ errors }}
+                {{ form.as_p }}
+            </div>
+
+            <button type="submit" class="btn btn-success">Создать</button>
+        </form>
     </div>
+    <div class="list-groups-wrapper">
 
-    <button type="submit" class="btn btn-primary">Create</button>
-</form>
+    </div>
+</div>
+
 
 {% endblock %}

@@ -5,29 +5,38 @@
 <div class="content-grouping">
     <div class="task-group-menu">
         <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
-            <a class="nav-link active link-light" aria-current="page" href="{% url 'tasks_home' %}">
-                <button type="button" class="btn btn-outline-warning">Задачи без групп</button>
-            </a>
+
             {% for group in user_tasks_groups %}
 
             {% if group.group_name == 'Standard group' %}
             <a class="nav-link active link-light" aria-current="page" href="{% url 'task_group' group.id %}">
-                <button type="button" class="btn btn-outline-danger">{{ group.group_name }}</button>
-            </a>
-
-            {% else %}
-            <a class="nav-link active link-light" aria-current="page" href="{% url 'task_group' group.id %}">
-                <button type="button" class="btn btn-outline-light">{{ group.group_name }}</button>
+                <button style="color: black;" type="button" class="btn btn-outline-warning">{{ group.group_name }}
+                </button>
             </a>
 
             {% endif %}
 
             {% endfor %}
 
+            {% for group in user_tasks_groups %}
+
+            {% if group.group_name == 'Standard group' %}
+            {% else %}
+
+            <a class="nav-link active link-light" aria-current="page"
+               href="{% url 'task_group' group.id %}">
+                <button style="color: orange;" type="button" class="btn btn-outline-light">
+                    {{ group.group_name }}
+                </button>
+            </a>
+
+            {% endif %}
+
+            {% endfor %}
         </div>
     </div>
-    {% block tasks_group %}
-    {% endblock %}
 </div>
+{% block tasks_group %}
+{% endblock %}
 
 {% endblock content %}

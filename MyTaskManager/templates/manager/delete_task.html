@@ -1,0 +1,23 @@
+{% extends 'manager/base.html' %}
+
+
+{% block content%}
+
+<form method="post">
+    {% csrf_token %}
+    <h3>Вы уверены что хотите удалить задачу "{{ object.title_task }}"?</h3>
+    <hr>
+    {% if stage_not_ready %}
+    <h5 style="color: rgba(251, 255, 0);">
+        У данной задачи осталосб несколько не выполненных подзадач ({{ stage_not_ready }})!
+    </h5>
+    {% endif %}
+    <div style="margin-top: 50px;">
+        <a href="{% url 'tasks_home' %}">
+            <button style="margin-right: 5%;" type="button" class="btn btn-info">Отменить</button>
+        </a>
+        <button type="submit" class="btn btn-danger">Да, удалить</button>
+    </div>
+</form>
+
+{% endblock %}

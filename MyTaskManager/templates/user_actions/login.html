@@ -1,26 +1,42 @@
 {% extends 'manager/base.html'%}
 
 {% block content %}
-<form action='' method="post">
-    {% csrf_token %}
-    <div class="position-relative">
-        <div class="position-absolute top-100 start-50 translate-middle">
-            <h1>Форма для входа</h1>
-            <hr>
-            {{ extra_context }}
-            <dt>
-                <div class="login-wrpper">
-                    {{ form }}
-                </div>
-                <dl class="login-row">
-                    <button class="btn btn-success" type="submit">Войти</button>
-                </dl>
-                <dl>
-                    <a style="color: white; text-decoration: none;" href="{% url 'registration' %}">Registration</a>
-                </dl>
-            </dt>
-        </div>
-    </div>
 
-</form>
+<div class="position-relative">
+    <form action='' method="post">
+        {% csrf_token %}
+        <div class="position-absolute top-100 start-50 translate-middle">
+            <h1 style="text-align: center;">Вход в MyTaskManager</h1>
+            <hr>
+            <div class="login-wrapper">
+                {% for fields in form%}
+                <div class="container text-center">
+                    <div class="row row-cols-1">
+                        <div class="col">
+                            <label>{{ fields.label }}</label>
+                        </div>
+                        <div class="col">
+                            {{ fields }}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="container text-center">
+                <div class="row align-items-end" style="margin-top: 25px;">
+                    <div class="col">
+                        <a style="color: red; text-decoration: none;" href="{% url 'registration' %}">Registration</a>
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-success" type="submit">Войти</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>
+
+
 {% endblock %}

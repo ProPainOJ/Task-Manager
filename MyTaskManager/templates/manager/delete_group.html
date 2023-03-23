@@ -1,0 +1,27 @@
+{% extends 'manager/base.html' %}
+
+
+{% block content%}
+
+<form method="post">
+    {% csrf_token %}
+    <h3>Вы уверены что хотите удалить группу "{{ object.group_name }}"?</h3>
+    <hr>
+    {% if tasks_in_group %}
+    <p>
+        В данной группе находится несколько задач ({{ tasks_in_group }}).
+        Дальнейшее удаление данной группы переместит все задачи в 'Нераспределенные задачи'
+    </p>
+    {% else %}
+    <p>Эта группа совершенно пуста, её можно спокойно удалять.</p>
+    {% endif %}
+    <h4>Продолжить удаление?</h4>
+    <div style="margin-top: 50px;">
+        <a href="{% url 'tasks_home' %}">
+            <button style="margin-right: 10%;" type="button" class="btn btn-info">Отменить</button>
+        </a>
+        <button type="submit" class="btn btn-danger">Да, удалить</button>
+    </div>
+</form>
+
+{% endblock %}
